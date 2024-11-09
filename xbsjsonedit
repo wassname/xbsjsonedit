@@ -383,7 +383,10 @@ def digin(parent, parent_id, path, search_term, operation, commit=False, indent=
 
                     for tag in item["tags"]:
                         tags += tag + ", "
-                print ("{:<4} - {}{}  [{}]".format(item["id"], indent, item["title"], tags[:-2]))
+
+                t = item.get("title", "").replace("[", "(").replace("]", ")")
+                u = item.get("url", "")
+                print(f"- [{t}]({u})")
 
             if operation == "DupURLs":
                 log_urls (item["url"], path, item["id"], parent, parent_id, item_index)
